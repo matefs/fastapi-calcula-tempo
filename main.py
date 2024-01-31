@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from datetime import datetime
 from pydantic import BaseModel
 from typing import Optional
+from Utils.Utils import validate_JSON_format
 
 app = FastAPI()
 
@@ -17,9 +18,8 @@ async def return_date_difference(
     final_date: datetime,
     format: Optional[str] = "json"  # Adicionando um parâmetro opcional para especificar o formato
 ):
-    if format == "json":
-        return {"initial_date": initial_date, "final_date": final_date}
-    elif format == "text":
-        return f"Inicial: {initial_date}, Final: {final_date}"
-    else:
-        return {"error": "Formato inválido, use 'json' ou 'text'"}
+    if(validate_JSON_format(format)):
+        date_difference : datetime = final_date - initial_date
+        return { "initial_date": initial_date, "final_date": final_date, "date_difference": str(date_difference) }
+
+    return {"error": "Formato inválido, use 'json' ou 'text'"}
