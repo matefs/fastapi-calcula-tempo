@@ -2,8 +2,8 @@ from fastapi import FastAPI
 from datetime import datetime,timedelta
 from pydantic import BaseModel
 from typing import Optional
+from fastapi.responses import RedirectResponse
 from Utils.Utils import validate_JSON_format
-
 app = FastAPI()
 
 
@@ -32,3 +32,7 @@ async def return_date_sum(initial_date: datetime, final_date: datetime, format: 
         date_sum: timedelta = final_date + initial_date
         return {"initial_date": initial_date, "final_date": final_date, "date_sum": str(date_sum) }
     return {"error": "Formato inválido, use 'json' ou 'text'"}
+
+@app.get('/')
+async def main():
+    return RedirectResponse(url="/docs")
