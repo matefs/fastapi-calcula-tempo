@@ -10,13 +10,6 @@ from Utils.Utils import validate_JSON_format
 app = FastAPI()
 
 
-class DateParams(BaseModel):
-    initial_date: datetime
-    final_date: datetime
-
-
-# Todo: calculate the difference between the two dates
-
 @app.get("/datetime/difference")
 async def return_date_difference(
         initial_date: datetime,
