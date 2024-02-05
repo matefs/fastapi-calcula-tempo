@@ -37,6 +37,6 @@ async def return_date_sum(initial_date: datetime, final_date: datetime, format: 
         return {"initial_date": initial_date, "final_date": final_date, "date_sum": str(date_sum) }
     return {"error": "Formato inválido, use 'json' ou 'text'"}
 
-@app.get('/')
+@app.get('/',include_in_schema=False)
 async def main():
     return RedirectResponse(url="/docs")
