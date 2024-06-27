@@ -8,7 +8,7 @@ from pydantic import BaseModel
 from Utils.Utils import validate_JSON_format
 
 app = FastAPI()
-
+# Todo: Never return as a datetime object, always return as numbers | days: 1 | hours: 2 | minutes: 3 | seconds: 4
 
 @app.get("/datetime/difference")
 async def return_date_time_difference(
